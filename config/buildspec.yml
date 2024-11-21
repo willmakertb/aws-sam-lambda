@@ -1,0 +1,44 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Instalando SAM CLI..."
+      - pip install aws-sam-cli
+
+  pre_build:
+    commands:
+      - echo "Descargando dependencias..."
+      - sam validate
+      - echo "SAM Template validado con éxito"
+
+  build:
+    commands:
+      - echo "Construyendo el paquete SAM..."
+      - sam build
+      - echo "Paquete construido exitosamente"
+
+  post_build:
+    commands:
+      - echo "Empaquetando y subiendo los artefactos a S3..."
+      - sam package --s3-bucket ${ARTIFACT_BUCKET}  --output-template-file packaged.yaml
+      - echo "Desplegando la función Lambda en la rama 'dev'..."
+      - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
+      - echo "Despliegue completado con éxito"
+
+artifacts:
+  files:
+    - packaged.yaml
+    - template.yaml
+    - README.md
+  discard-paths: no
+
+cache:
+  paths:
+    - '/root/.cache/pip/**/*'
+env:
+  variables:
+    ARTIFACT_BUCKET: "artifacts-lambdas "  # Cambia esto por el nombre del bucket S3
+    STACK_NAME: "wmaker-stack-sam-lambda"       # Cambia esto por el nombre del stack
