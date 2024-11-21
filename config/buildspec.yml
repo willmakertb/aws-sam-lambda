@@ -16,7 +16,7 @@ phases:
 
   build:
     commands:
-      - echo "Construyendo el paquete SAM..."
+      - echo "Construyendo el paquete SAM....."
       - sam build
       - echo "Paquete construido exitosamente"
 
