@@ -11,6 +11,9 @@ phases:
   pre_build:
     commands:
       - echo "Descargando dependencias..."
+      - ls -la  # Listar archivos en el directorio actual
+      - sam --version
+      - cd sam-lambda-cicd
       - sam validate
       - echo "SAM Template validado con éxito"
 
