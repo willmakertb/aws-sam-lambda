@@ -43,5 +43,5 @@ cache:
     - '/root/.cache/pip/**/*'
 env:
   variables:
-    ARTIFACT_BUCKET: "artifacts-lambdas "  # Cambia esto por el nombre del bucket S3
+    ARTIFACT_BUCKET: "codepipeline-us-east-1-131507212456"  # Cambia esto por el nombre del bucket S3
     STACK_NAME: "wmaker-stack-sam-lambda"       # Cambia esto por el nombre del stack
