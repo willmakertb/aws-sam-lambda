@@ -33,7 +33,7 @@ phases:
   post_build:
     commands:
       - echo "Empaquetando y subiendo los artefactos a S3..."
-      - sam package --s3-bucket ${ARTIFACT_BUCKET} --no-resolve-s3   --output-template-file packaged.yaml
+      - sam package   --output-template-file packaged.yaml
       - echo "Desplegando la función Lambda en la rama 'dev'..."
       - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
       - echo "Despliegue completado con éxito"
