@@ -1,5 +1,14 @@
 version: 0.2
 
+
+env:
+  variables:
+    ARTIFACT_BUCKET: "codepipeline-us-east-1-131507212456"  # Cambia esto por el nombre del bucket S3
+    STACK_NAME: "wmaker-stack-sam-lambda"       # Cambia esto por el nombre del stack
+    StackEnvironment: "dev"
+    DB_URL: "/dev/database/url"
+    ENVIRONMENT: "dev"
+    AWS_DEFAULT_REGION: "us-east-1"
 phases:
   install:
     runtime-versions:
@@ -17,7 +26,7 @@ phases:
       - sam validate
       - echo "SAM Template validado con éxito"
 
-  build:
+  build:ec
     commands:
       - echo "Construyendo el paquete SAM....."
       - sam build
@@ -26,7 +35,7 @@ phases:
   post_build:
     commands:
       - echo "Empaquetando y subiendo los artefactos a S3..."
-      - sam package --s3-bucket ${ARTIFACT_BUCKET}  --output-template-file packaged.yaml
+      - sam package --s3-bucket ${ARTIFACT_BUCKET} --no-resolve-s3   --output-template-file packaged.yaml
       - echo "Desplegando la función Lambda en la rama 'dev'..."
       - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
       - echo "Despliegue completado con éxito"
@@ -35,13 +44,9 @@ artifacts:
   files:
     - packaged.yaml
     - template.yaml
-    - README.md
+    - README.mdcs
   discard-paths: no
 
 cache:
   paths:
     - '/root/.cache/pip/**/*'
-env:
-  variables:
-    ARTIFACT_BUCKET: "codepipeline-us-east-1-131507212456"  # Cambia esto por el nombre del bucket S3
-    STACK_NAME: "wmaker-stack-sam-lambda"       # Cambia esto por el nombre del stack
