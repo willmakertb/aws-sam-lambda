@@ -1,6 +1,4 @@
 version: 0.2
-
-
 env:
   variables:
     ARTIFACT_BUCKET: "codepipeline-us-east-1-131507212456"  # Cambia esto por el nombre del bucket S3
@@ -26,7 +24,7 @@ phases:
       - sam validate
       - echo "SAM Template validado con éxito"
 
-  build:ec
+  build:
     commands:
       - echo "Construyendo el paquete SAM....."
       - sam build
