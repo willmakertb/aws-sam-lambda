@@ -4,7 +4,7 @@ env:
      # Cambia esto por el nombre del bucket S3
     STACK_NAME: "wmaker-stack-sam-lambda"       # Cambia esto por el nombre del stack
     StackEnvironment: "dev"
-    DB_URL: "/dev/database/url"
+    DB_URL: "/dev/database/url/"
     ENVIRONMENT: "dev"
     AWS_DEFAULT_REGION: "us-east-1"
 phases:
