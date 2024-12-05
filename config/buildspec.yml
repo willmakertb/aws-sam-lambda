@@ -35,7 +35,7 @@ phases:
     commands:
       - echo "Empaquetando y subiendo los artefactos a S3..."
       - echo "Desplegando la función Lambda en la rama 'dev'..."
-      - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME  --capabilities CAPABILITY_IAM --region $REGION --no-confirm-changeset
+      - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME  --capabilities CAPABILITY_IAM --region $AWS_DEFAULT_REGION --no-confirm-changeset
       - echo "Despliegue completado con éxito"
 
 artifacts:
