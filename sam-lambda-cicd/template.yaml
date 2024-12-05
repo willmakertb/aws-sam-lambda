@@ -27,5 +27,5 @@ Outputs:
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
 
   HelloWorldFunction:
-    Description: Hello World Lambda Function ARN
+    Description: Hello World Lambda Function ARN deploted in the stack sam-lambda-cicd
     Value: !GetAtt HelloWorldFunction.Arn
