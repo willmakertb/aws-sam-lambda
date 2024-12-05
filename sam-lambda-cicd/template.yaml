@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: >
   sam-lambda-cicd
 
-  Sample SAM Template for sam-lambda-cicd
+  Sample SAM Template for sam-lambda-cicd project
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
