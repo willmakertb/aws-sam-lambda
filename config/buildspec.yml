@@ -29,13 +29,13 @@ phases:
       - echo "Construyendo el paquete SAM....."
       - sam build
       - echo "Paquete construido exitosamente"
+      - sam package  --output-template-file packaged.yaml
 
   post_build:
     commands:
       - echo "Empaquetando y subiendo los artefactos a S3..."
-      - sam package   --output-template-file packaged.yaml
       - echo "Desplegando la función Lambda en la rama 'dev'..."
-      - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME  --capabilities CAPABILITY_IAM  
+      - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME  --capabilities CAPABILITY_IAM --region $REGION --no-confirm-changeset
       - echo "Despliegue completado con éxito"
 
 artifacts:
