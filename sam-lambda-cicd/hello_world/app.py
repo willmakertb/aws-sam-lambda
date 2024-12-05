@@ -36,9 +36,10 @@ def lambda_handler(event, context):
     return {
         "statusCode": 200,
         "body": json.dumps({
-            "message": "hello W",
+            "message": "Test pipeline cicd",
             "event": event,
-            "date": "2024-12-04",
+            "date": "2024-12-04"
+            
             # "location": ip.text.replace("\n", "")
         }),
     }
